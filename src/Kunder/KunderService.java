@@ -18,6 +18,7 @@ public class KunderService {
      */
     public KunderService() {
         this.customerRepository = new KunderRepo();
+
     }
 
     /**
@@ -42,31 +43,13 @@ public class KunderService {
         // Skriv ut alla kunder med tydlig formatering
         System.out.println("\n=== Kundlista ===");
         for (Kunder customer : customers) {
-            System.out.println("Customer.Customer{" +
-                    "customerId=" + customer.getId() +
-                    ", name='" + customer.getName() + '\'' +
-                    ", email='" + customer.getEmail() + '\'' +
-                    ", phone='" + customer.getPhone() + '\'' +
-                    ", address='" + customer.getAddress() + '\'' +
-                    ", password='" + customer.getPassword() + '\'' +
-                    '}');
+            System.out.println("ID: " + customer.getId());
+            System.out.println("Namn: " + customer.getName());
+            System.out.println("Email: " + customer.getEmail());
+            System.out.println("-----------------");
         }
     }
 
-    public void showUserById(int customerId) throws SQLException {
-        // Hämta alla kunder från repository-lagret
-        Kunder customer = customerRepository.getCustomerById(customerId);
-
-
-        // Skriv ut alla kunder med tydlig formatering
-        System.out.println(customer.toString());
-    }
-
-    public void addCustomer(String name, String email, String phone, String address, String password) throws SQLException {
-
-        customerRepository.addCustomer(name, email, phone, address, password);
-
-    }
 
     /**
      * Här kan man lägga till fler metoder som t.ex:

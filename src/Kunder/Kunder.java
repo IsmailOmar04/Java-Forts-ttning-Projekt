@@ -12,7 +12,7 @@ public class Kunder extends User {
     public Kunder(int id, String name, String userName, String phone, String address, String password) {
         super(id, userName, password);
         this.name = name;
-        this.email = userName;
+        this.email = email;
         this.phone = phone;
         this.address = address;
     }
@@ -46,14 +46,14 @@ public class Kunder extends User {
         return address;
     }
 
-    public void setAddress(String adress) {
-        this.address = adress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
 
     @Override
     public String toString() {
-        return "Customer.Customer{" +
+        return "Kunder{" +
                 "customerId=" + getId() +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
