@@ -30,15 +30,16 @@ public class LoginController {
 
                 switch (select) {
                     case "1":
-                        System.out.println("Enter email:");
+                        System.out.println("Skriv Mailadress");
                         String email = scanner.nextLine();
-                        System.out.println("Enter password");
+                        System.out.println("Skriv lösenord");
                         String password = scanner.nextLine();
                         loginService.loginAsCustomer(email, password);
                         break;
                     case "2":
-                        System.out.println("Enter name:");
+                        System.out.println("Skriv namn");
                         String userName = scanner.nextLine();
+
                         System.out.println("Enter password");
                         String adminPassword = scanner.nextLine();
                         loginService.loginAsAdmin(userName, adminPassword);

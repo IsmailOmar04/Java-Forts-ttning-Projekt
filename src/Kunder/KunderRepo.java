@@ -26,24 +26,7 @@ public class KunderRepo extends Repo {
             }
         }
         return customers;
-    }
 
-    public Kunder getCustomerById(int customerId) throws SQLException {
-
-        String sql = "SELECT * FROM customers WHERE customer_id = ?";
-
-        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:webbutiken.db");
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-            pstmt.setInt(1, customerId);
-
-            ResultSet rs = pstmt.executeQuery();
-
-            if (!rs.next()) {
-                return null;
-            }
-            return new Kunder (customerId, rs.getString("name"), rs.getString("email"), rs.getString("phone"), rs.getString("address"), rs.getString("password") );
-        }
     }
 
     public Kunder getCustomerByEmail(String email) throws SQLException {
@@ -53,33 +36,26 @@ public class KunderRepo extends Repo {
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setString(1, email);
-
             ResultSet rs = pstmt.executeQuery();
 
-            if (!rs.next()) {
-                return null;
+            if (rs.next()) {
+                return new Kunder(
+                        rs.getInt("customer_id"),
+                        rs.getString("name"),
+                        rs.getString("email"),
+                        rs.getString("phone"),
+                        rs.getString("address"),
+                        rs.getString("password")
+                );
             }
-            return new Kunder(rs.getInt("customer_id"), rs.getString("name"), rs.getString("email"), rs.getString("phone"), rs.getString("address"), rs.getString("password") );
         }
+        return null;
     }
 
-    public void addCustomer(String name, String phone, String email, String address, String password) throws SQLException {
 
-        String sql = "INSERT INTO customers (name, email, phone, address, password) " +
-                "VALUES (?, ?, ?, ?, ?)";
 
-        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:webbutiken.db");
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            pstmt.setString(1, name);
-            pstmt.setString(2, phone);
-            pstmt.setString(3, email);
-            pstmt.setString(4, address);
-            pstmt.setString(5, password);
 
-            pstmt.executeUpdate();
-        }
-    }
 
 
     /**
