@@ -8,7 +8,7 @@ import java.sql.SQLException;
 public class LoginService {
 
     KunderRepo customerRepository;
-    KunderRepo adminRepository;
+    AdminRepo adminRepository;
     //LoginController loginController;
 
     public LoginService() {

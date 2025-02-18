@@ -32,7 +32,7 @@ public class KunderRepo extends Repo {
 
         String sql = "SELECT * FROM customers WHERE customer_id = ?";
 
-        try (Connection conn = DriverManager.getConnection(URL);
+        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:webbutiken.db");
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setInt(1, customerId);

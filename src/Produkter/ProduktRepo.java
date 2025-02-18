@@ -5,13 +5,13 @@ import Super.*;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class ProduktRepository extends Repo{
+public class ProduktRepo extends Repo{
 
     public ArrayList<Produkt> getAll() throws SQLException {
         ArrayList<Produkt> products = new ArrayList<>();
 
         // try-with-resources stänger automatiskt Connection, Statement och ResultSet
-        try (Connection conn = DriverManager.getConnection();
+        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:webbutiken.db");
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery("SELECT * FROM products")) {
 
