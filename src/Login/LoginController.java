@@ -3,10 +3,13 @@ package Login;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+import Kunder.KunderService;
+import Super.Repo;
 
 public class LoginController {
 
     LoginService loginService;
+    KunderService kunderService;
 
     // Scanner för användarinput
     Scanner scanner;
@@ -15,6 +18,7 @@ public class LoginController {
         // Skapa instanser av nödvändiga objekt
         this.loginService = new LoginService();
         this.scanner = new Scanner(System.in);
+        this.kunderService = new KunderService();
     }
 
     public void run() {
@@ -22,7 +26,7 @@ public class LoginController {
             try {
                 System.out.println("\n=== Login ===");
                 System.out.println("1. Logga in som kund");
-                System.out.println("2. Logga in som Admin");
+                System.out.println("2. Registrera kund");
                 System.out.println("0. Avsluta");
                 System.out.print("Välj ett alternativ: ");
 
@@ -32,18 +36,34 @@ public class LoginController {
                     case "1":
                         System.out.println("Skriv Mailadress");
                         String email = scanner.nextLine();
+
                         System.out.println("Skriv lösenord");
                         String password = scanner.nextLine();
+
                         loginService.loginAsCustomer(email, password);
                         break;
-                    case "2":
-                        System.out.println("Skriv namn");
-                        String userName = scanner.nextLine();
 
-                        System.out.println("Enter password");
-                        String adminPassword = scanner.nextLine();
-                        loginService.loginAsAdmin(userName, adminPassword);
+                    case "2":
+                        System.out.println("\n Registrera Ny Kund");
+                        System.out.println("Namn: ");
+                        String Name  = scanner.nextLine();
+
+                        System.out.println("Email: ");
+                        String Email = scanner.nextLine();
+
+                        System.out.println("Phone: ");
+                        String Phone = scanner.nextLine();
+
+                        System.out.println("Address");
+                        String Address = scanner.nextLine();
+
+                        System.out.println("Lösenord:  ");
+                        String Password = scanner.nextLine();
+
+                        loginService.RegistreraKunder(Name, Email, Phone, Address, Password);
+
                         break;
+
                     case "0":
                         System.out.println("Avslutar kundhantering...");
                         return;

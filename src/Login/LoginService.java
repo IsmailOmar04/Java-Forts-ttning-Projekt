@@ -1,6 +1,6 @@
 package Login;
 
-import Admin.AdminRepo;
+
 import Kunder.*;
 
 import java.sql.SQLException;
@@ -8,12 +8,10 @@ import java.sql.SQLException;
 public class LoginService {
 
     KunderRepo customerRepository;
-    AdminRepo adminRepository;
     //LoginController loginController;
 
     public LoginService() {
         this.customerRepository = new KunderRepo();
-        this.adminRepository = new AdminRepo();
         //this.loginController = new LoginController();
     }
 
@@ -34,8 +32,17 @@ public class LoginService {
         return null;
     }
 
-    public void loginAsAdmin(String name, String password){
+    public void RegistreraKunder(String name,String email, String phone,String adress,String password) throws SQLException{
 
+        Kunder nykund = new Kunder(0, name, email, phone, adress, password);
+        customerRepository.addCustomers(nykund);
+        System.out.println("Kunden har registrerats");
     }
 
+
 }
+
+
+
+
+

@@ -6,22 +6,16 @@ import java.util.Scanner;
 
 public class ProduktController {
 
-    // Service-lager för kundhantering, hanterar affärslogik
     ProduktRepo productRepository;
 
-    // Scanner för användarinput
     Scanner scanner;
 
     public ProduktController() {
-        // Skapa instanser av nödvändiga objekt
+
         this.productRepository = new ProduktRepo();
         this.scanner = new Scanner(System.in);
     }
 
-    /**
-     * Huvudloop för kundhantering
-     * Visar meny och hanterar användarval
-     */
     public void run() {
         while (true) {
             try {

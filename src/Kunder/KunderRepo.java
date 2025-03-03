@@ -52,6 +52,21 @@ public class KunderRepo extends Repo {
         return null;
     }
 
+    public void addCustomers(Kunder customer) throws SQLException{
+        String sql = "INSERT INTO customers (name, email, phone, address, password) VALUES (?, ?, ?, ?, ?)";
+
+        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:webbutiken.db");
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, customer.getName());
+            stmt.setString(2, customer.getEmail());
+            stmt.setString(3, customer.getPhone());
+            stmt.setString(4, customer.getAddress());
+            stmt.setString(5, customer.getPassword());
+
+            stmt.executeUpdate();
+        }
+    }
+}
 
 
 
@@ -73,4 +88,3 @@ public class KunderRepo extends Repo {
      * 4. Hantera resultatet
      * 5. Låt try-with-resources stänga alla resurser
      */
-}
