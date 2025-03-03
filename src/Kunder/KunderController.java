@@ -1,5 +1,4 @@
 package Kunder;
-
 import java.sql.SQLException;
 import java.util.Scanner;
 

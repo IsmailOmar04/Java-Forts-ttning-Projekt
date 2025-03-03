@@ -8,13 +8,15 @@ public class Kunder extends User {
     private String email;
     private String phone;
     private String address;
+    private String password;
 
-    public Kunder(int id, String name, String userName, String phone, String address, String password) {
-        super(id, userName, password);
+    public Kunder(int id, String name, String email, String phone, String address, String password) {
+        super(2, email, password);
         this.name = name;
         this.email = email;
         this.phone = phone;
         this.address = address;
+        this.password = password;
     }
 
 
@@ -48,6 +50,14 @@ public class Kunder extends User {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getPassword(){
+        return password;
+    }
+
+    public void setPassword(String password){
+        this.password = password;
     }
 
 

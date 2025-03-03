@@ -1,12 +1,18 @@
 package Main;
-
 import Login.LoginController;
+import Kunder.KunderController;
 
 public class Main {
     public static void main(String[] args) {
 
         LoginController loginController = new LoginController();
-        loginController.run();
+
+        KunderController kunderController = new KunderController();
+
+       // loginController.run();
+        kunderController.run();
 
     }
+
+
 }
