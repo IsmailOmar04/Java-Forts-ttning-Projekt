@@ -1,6 +1,9 @@
 package Produkter;
 
+import Kunder.KunderService;
+
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -19,42 +22,42 @@ public class ProduktController {
     public void run() {
         while (true) {
             try {
-                // Skriv ut menyalternativ direkt i run-metoden för tydlighet
+
                 System.out.println("\n=== Produkthantering ===");
                 System.out.println("1. Visa alla produkter");
                 System.out.println("2. Visa en produkt");
-                System.out.println("3. Lägg till en produkt");
+                System.out.println("3. Filtrera Produkter Från Kategorier");
                 System.out.println("0. Avsluta");
                 System.out.print("Välj ett alternativ: ");
 
-                // Läs användarens val
+
                 int select = scanner.nextInt();
 
-                // Hantera användarens val
+
                 switch (select) {
                     case 1:
-                        // Anropa service-lagret för att visa alla kunder
+
                         productRepository.getAll();
                         break;
                     case 2:
-                        // Anropa service-lagret för att visa en kund baserat på id
-                        System.out.println("Ange ID");
-                        int id = scanner.nextInt();
-                        //customerService.showUserById(id);
+                        System.out.println("Ange Produktnamn att söka efter:");
+                        scanner.nextLine();
+                        String sökord = scanner.nextLine();
+                        ArrayList<Produkt> produkter = productRepository.SökaProdukt(sökord);
+
+                        if(produkter.isEmpty()) {
+                            System.out.println("Inga produkter hittades");
+
+                        } else {
+                            for (Produkt p : produkter) {
+                                System.out.println(p.toString());
+                            }
+                        }
                         break;
                     case 3:
-                        // Anropa service-lagret för att visa en kund baserat på id
-                        System.out.println("Ange namn");
-                        String name = scanner.next();
-                        System.out.println("Ange email");
-                        String email = scanner.next();
-                        System.out.println("Ange telefon");
-                        String phone = scanner.next();
-                        System.out.println("Ange adress");
-                        String address = scanner.next();
-                        System.out.println("Ange lösenord");
-                        String password = scanner.next();
-                        //customerService.addCustomer(name, email, phone, address, password);
+                        System.out.println("Ange kategori att filtrera efter:");
+                        String filtrer = scanner.nextLine();
+                        productRepository.filtreraProdukterFrånKategorier(filtrer);
                         break;
                     case 0:
                         System.out.println("Avslutar kundhantering...");
@@ -63,12 +66,12 @@ public class ProduktController {
                         System.out.println("Ogiltigt val, försök igen");
                 }
             } catch (SQLException e) {
-                // Hantera databasfel
+
                 System.out.println("Ett fel uppstod vid databasanrop: " + e.getMessage());
             } catch (Exception e) {
-                // Hantera övriga fel (t.ex. felaktig input)
+
                 System.out.println("Ett oväntat fel uppstod: " + e.getMessage());
-                scanner.nextLine(); // Rensa scanner-bufferten vid felinmatning
+                scanner.nextLine();
             }
         }
     }

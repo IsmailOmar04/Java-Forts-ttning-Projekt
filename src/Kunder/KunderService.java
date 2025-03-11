@@ -1,10 +1,11 @@
 package Kunder;
 import java.sql.SQLException;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 public class KunderService {
 
-    // Repository som hanterar alla databasanrop
+
     KunderRepo customerRepository;
 
 
@@ -15,16 +16,16 @@ public class KunderService {
 
 
     public void showAllUsers() throws SQLException {
-        // Hämta alla kunder från repository-lagret
+
         ArrayList<Kunder> customers = customerRepository.getAll();
 
-        // Kontrollera om vi har några kunder att visa
+
         if (customers.isEmpty()) {
             System.out.println("Inga kunder hittades.");
             return;
         }
 
-        // Skriv ut alla kunder med tydlig formatering
+
         System.out.println("\n=== Kundlista ===");
         for (Kunder customer : customers) {
             System.out.println("ID: " + customer.getId());
@@ -34,5 +35,11 @@ public class KunderService {
             System.out.println("Adress" + customer.getAddress());
             System.out.println("-----------------");
         }
-    } }
+    }
+
+    public void updateCustomerInfo(int customerId, String Name, String Email, String Phone, String Address, String Password) throws SQLException {
+    Kunder customer = new Kunder(customerId, Name, Email, Phone, Address, Password);
+    customerRepository.updateCustomers(customer);
+        System.out.println("Kundinformation updaterad!!");
+}}
 

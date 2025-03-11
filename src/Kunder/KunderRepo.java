@@ -4,7 +4,7 @@ import Super.*;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class KunderRepo extends Repo {
+public class KunderRepo  {
 
     public ArrayList<Kunder> getAll() throws SQLException {
         ArrayList<Kunder> customers = new ArrayList<>();
@@ -62,6 +62,24 @@ public class KunderRepo extends Repo {
             stmt.setString(3, customer.getPhone());
             stmt.setString(4, customer.getAddress());
             stmt.setString(5, customer.getPassword());
+            stmt.setInt(6, customer.getId());
+
+            stmt.executeUpdate();
+        }
+    }
+    public void updateCustomers(Kunder customer) throws SQLException{
+
+        String sql = "UPDATE customers SET name = ?, email = ?, phone = ?, address = ?, password = ? WHERE customer_id = ?";
+        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:webbutiken.db");
+        PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+
+            stmt.setString(1, customer.getName());
+            stmt.setString(2, customer.getEmail());
+            stmt.setString(3, customer.getPhone());
+            stmt.setString(4, customer.getAddress());
+            stmt.setString(5, customer.getPassword());
+            stmt.setInt(6, customer.getId());
 
             stmt.executeUpdate();
         }
@@ -69,22 +87,4 @@ public class KunderRepo extends Repo {
 }
 
 
-
-
-
-
-    /**
-     * Här kan fler metoder läggas till som t.ex:
-     * - addCustomer
-     * - getCustomerById
-     * - updateCustomer
-     * - deleteCustomer
-     * - findCustomerByEmail
-     *
-     * Varje metod kommer följa samma mönster:
-     * 1. Skapa Connection med DriverManager.getConnection(URL)
-     * 2. Skapa Statement eller PreparedStatement
-     * 3. Utför databasoperationen
-     * 4. Hantera resultatet
-     * 5. Låt try-with-resources stänga alla resurser
-     */
+     
