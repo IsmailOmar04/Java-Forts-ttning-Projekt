@@ -1,6 +1,7 @@
 package Main;
 import Login.LoginController;
 import Kunder.KunderController;
+import Produkter.ProduktController;
 
 public class Main {
     public static void main(String[] args) {
@@ -8,9 +9,11 @@ public class Main {
         LoginController loginController = new LoginController();
 
         KunderController kunderController = new KunderController();
+       ProduktController produktController = new ProduktController();
 
-       // loginController.run();
-        kunderController.run();
+       //produktController.run();
+     loginController.run();
+     kunderController.run();
 
     }
 
