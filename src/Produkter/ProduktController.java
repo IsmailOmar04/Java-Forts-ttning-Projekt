@@ -14,10 +14,13 @@ public class ProduktController {
     Scanner scanner;
 
     public ProduktController() {
+        // Konstruktor som startar ProduktRepo och Scanner
 
         this.productRepository = new ProduktRepo();
         this.scanner = new Scanner(System.in);
     }
+
+    // Metod för att starta och köra menyalternativen för produkthantering
 
     public void run() {
         while (true) {
@@ -30,16 +33,17 @@ public class ProduktController {
                 System.out.println("0. Avsluta");
                 System.out.print("Välj ett alternativ: ");
 
-
+                // Läsa användarens val från menyn
                 int select = scanner.nextInt();
 
 
                 switch (select) {
                     case 1:
-
+                        // Visa alla produkter
                         productRepository.getAll();
                         break;
                     case 2:
+                        // Sök efter en specifik produkt genom namn
                         System.out.println("Ange Produktnamn att söka efter:");
                         scanner.nextLine();
                         String sökord = scanner.nextLine();
@@ -49,18 +53,21 @@ public class ProduktController {
                             System.out.println("Inga produkter hittades");
 
                         } else {
+                            // Skriv ut alla produkter som matchade sökordet
                             for (Produkt p : produkter) {
                                 System.out.println(p.toString());
                             }
                         }
                         break;
                     case 3:
+                        // Filtrera produkter efter kategori
                         System.out.println("Ange kategori att filtrera efter:");
                         String filtrer = scanner.nextLine();
+                        scanner.nextLine();
                         productRepository.filtreraProdukterFrånKategorier(filtrer);
                         break;
                     case 0:
-                        System.out.println("Avslutar kundhantering...");
+                        System.out.println("Avslutar Orderhantering...");
                         return;
                     default:
                         System.out.println("Ogiltigt val, försök igen");
