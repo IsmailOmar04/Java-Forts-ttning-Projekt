@@ -65,7 +65,7 @@ public class LoginController {
                         break;
 
                     case "0":
-                        System.out.println("Avslutar kundhantering...");
+                        System.out.println("Avslutar Loginhantering...");
                         return;
                     default:
                         System.out.println("Ogiltigt val, försök igen");

@@ -11,7 +11,7 @@ public class Kunder extends User {
     private String password;
 
     public Kunder(int id, String name, String email, String phone, String address, String password) {
-        super(2, email, password);
+        super(id, email, password);
         this.name = name;
         this.email = email;
         this.phone = phone;
@@ -37,10 +37,12 @@ public class Kunder extends User {
     }
 
     public String getPhone() {
+
         return phone;
     }
 
     public void setPhone(String phone) {
+
         this.phone = phone;
     }
 
@@ -49,10 +51,12 @@ public class Kunder extends User {
     }
 
     public void setAddress(String address) {
+
         this.address = address;
     }
 
     public String getPassword(){
+
         return password;
     }
 
@@ -61,15 +65,4 @@ public class Kunder extends User {
     }
 
 
-    @Override
-    public String toString() {
-        return "Kunder{" +
-                "customerId=" + getId() +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", phone='" + phone + '\'' +
-                ", address='" + address + '\'' +
-                ", password='" + getPassword() + '\'' +
-                '}';
-    }
 }
